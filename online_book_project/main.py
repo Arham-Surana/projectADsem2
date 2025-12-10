@@ -144,4 +144,9 @@ if __name__ == '__main__':
     if not os.path.exists(DB_PATH):
         init_database()
     
+    # Disable werkzeug logging to suppress development server warning
+    import logging
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)
+    
     app.run(debug=True, host='localhost', port=5000)
