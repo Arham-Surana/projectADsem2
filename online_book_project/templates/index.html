@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Library — Sabina</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Online Library — Sabina</h1>
+            <p class="subtitle">Discover and Manage Your Favorite Books</p>
+        </header>
+
+        <!-- Main Controls Section -->
+        <div class="controls-section">
+            <div class="search-section">
+                <div class="search-group">
+                    <label for="category-filter">Category:</label>
+                    <select id="category-filter">
+                        <option value="All">All</option>
+                        <option value="Novel">Novel</option>
+                        <option value="Philosophy">Philosophy</option>
+                        <option value="Poetry">Poetry</option>
+                    </select>
+                </div>
+
+                <div class="search-group">
+                    <label for="search-input">Name:</label>
+                    <input type="text" id="search-input" placeholder="Search by book name...">
+                </div>
+
+                <button id="search-btn" class="btn btn-primary">Search</button>
+            </div>
+
+            <div class="action-buttons">
+                <button id="erase-btn" class="btn btn-danger">Erase</button>
+                <button id="new-btn" class="btn btn-success">New</button>
+                <span class="sort-option">Sort by Date ↑</span>
+            </div>
+        </div>
+
+        <!-- Modal for Adding New Book -->
+        <div id="add-book-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>📖 Add New Book</h2>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <form id="add-book-form">
+                    <div class="form-group">
+                        <label for="book-name">Name</label>
+                        <input type="text" id="book-name" required placeholder="Enter book name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="book-author">Author</label>
+                        <input type="text" id="book-author" required placeholder="Enter author name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="book-date">Date (year)</label>
+                        <input type="number" id="book-date" required placeholder="e.g., 2020">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="book-category">Category</label>
+                        <select id="book-category" required>
+                            <option value="">Select Category</option>
+                            <option value="Novel">Novel</option>
+                            <option value="Philosophy">Philosophy</option>
+                            <option value="Poetry">Poetry</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary save-btn">Save</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal for Deletion Confirmation -->
+        <div id="delete-confirmation" class="modal" style="display: none;">
+            <div class="modal-content modal-sm">
+                <div class="modal-body">
+                    <div class="warning-icon">⚠️</div>
+                    <p>Please select a book to delete</p>
+                </div>
+                <button class="btn btn-primary" id="confirm-ok">OK</button>
+            </div>
+        </div>
+
+        <!-- Books Table -->
+        <div class="table-section">
+            <table id="books-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Author</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="books-tbody">
+                    <!-- Books will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

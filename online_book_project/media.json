@@ -1,0 +1,163 @@
+[
+  {
+    "id": 1,
+    "name": "Madonna in a Fur Coat",
+    "author": "Sabahattin Ali",
+    "date": 1943,
+    "category": "Novel"
+  },
+  {
+    "id": 2,
+    "name": "Notes from Underground",
+    "author": "Fyodor Dostoevsky",
+    "date": 1864,
+    "category": "Novel"
+  },
+  {
+    "id": 3,
+    "name": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "date": 1866,
+    "category": "Novel"
+  },
+  {
+    "id": 4,
+    "name": "White Nights",
+    "author": "Fyodor Dostoevsky",
+    "date": 1848,
+    "category": "Novel"
+  },
+  {
+    "id": 5,
+    "name": "Letters to Milena",
+    "author": "Franz Kafka",
+    "date": 1952,
+    "category": "Novel"
+  },
+  {
+    "id": 6,
+    "name": "The Metamorphosis",
+    "author": "Franz Kafka",
+    "date": 1915,
+    "category": "Novel"
+  },
+  {
+    "id": 7,
+    "name": "The First Man",
+    "author": "Albert Camus",
+    "date": 1994,
+    "category": "Novel"
+  },
+  {
+    "id": 8,
+    "name": "The Stranger",
+    "author": "Albert Camus",
+    "date": 1942,
+    "category": "Novel"
+  },
+  {
+    "id": 9,
+    "name": "The Idiot",
+    "author": "Fyodor Dostoevsky",
+    "date": 1869,
+    "category": "Novel"
+  },
+  {
+    "id": 10,
+    "name": "No Longer Human",
+    "author": "Osamu Dazai",
+    "date": 1948,
+    "category": "Novel"
+  },
+  {
+    "id": 11,
+    "name": "Kokoro",
+    "author": "Natsume Sōseki",
+    "date": 1914,
+    "category": "Novel"
+  },
+  {
+    "id": 12,
+    "name": "I Am a Cat",
+    "author": "Natsume Sōseki",
+    "date": 1906,
+    "category": "Novel"
+  },
+  {
+    "id": 13,
+    "name": "Pachinko",
+    "author": "Min Jin Lee",
+    "date": 2017,
+    "category": "Novel"
+  },
+  {
+    "id": 14,
+    "name": "I Have the Right to Destroy Myself",
+    "author": "Kim Young-ha",
+    "date": 1996,
+    "category": "Novel"
+  },
+  {
+    "id": 15,
+    "name": "Ali and Nino",
+    "author": "Kurban Said",
+    "date": 1937,
+    "category": "Novel"
+  },
+  {
+    "id": 16,
+    "name": "The Devil",
+    "author": "Huseyn Javid",
+    "date": 1924,
+    "category": "Novel"
+  },
+  {
+    "id": 17,
+    "name": "The Bell Jar",
+    "author": "Sylvia Plath",
+    "date": 1963,
+    "category": "Novel"
+  },
+  {
+    "id": 18,
+    "name": "Orlando: A Biography",
+    "author": "Virginia Woolf",
+    "date": 1928,
+    "category": "Novel"
+  },
+  {
+    "id": 19,
+    "name": "On Truth and Lies in a Nonmoral Sense",
+    "author": "Friedrich Nietzsche",
+    "date": 1896,
+    "category": "Philosophy"
+  },
+  {
+    "id": 20,
+    "name": "Beyond Good and Evil: Prelude to a Philosophy of the Future",
+    "author": "Friedrich Nietzsche",
+    "date": 1886,
+    "category": "Philosophy"
+  },
+  {
+    "id": 21,
+    "name": "A Room of One's Own",
+    "author": "Virginia Woolf",
+    "date": 1929,
+    "category": "Philosophy"
+  },
+  {
+    "id": 22,
+    "name": "Milk and honey",
+    "author": "Rupi Kaur",
+    "date": 2014,
+    "category": "Poetry"
+  },
+  {
+    "id": 23,
+    "name": "Tulips",
+    "author": "Sylvia Plath",
+    "date": 1965,
+    "category": "Poetry"
+  }
+]
