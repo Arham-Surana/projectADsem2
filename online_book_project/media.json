@@ -1,12 +1,5 @@
 [
   {
-    "id": 1,
-    "name": "Madonna in a Fur Coat",
-    "author": "Sabahattin Ali",
-    "date": 1943,
-    "category": "Novel"
-  },
-  {
     "id": 2,
     "name": "Notes from Underground",
     "author": "Fyodor Dostoevsky",
@@ -159,5 +152,12 @@
     "author": "Sylvia Plath",
     "date": 1965,
     "category": "Poetry"
+  },
+  {
+    "id": 24,
+    "name": "Subtle art of not giving a Fuck",
+    "author": "mark",
+    "date": 2000,
+    "category": "Philosophy"
   }
 ]
