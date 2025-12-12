@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Library </title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Online Library — Arham</title>
+    <link rel="stylesheet" href="file:///PLACEHOLDER_CSS_PATH" id="style-link">
 </head>
 <body>
     <div class="container">
@@ -109,6 +109,13 @@
         </div>
     </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+    <script src="file:///PLACEHOLDER_JS_PATH" id="script-src"></script>
+    <script>
+        // Replace placeholders with actual file paths once DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Paths will be injected by Python
+        });
+    </script>
 </body>
 </html>

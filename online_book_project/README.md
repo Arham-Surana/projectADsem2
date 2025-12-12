@@ -1,4 +1,4 @@
-# Online Library - Sabina 📚
+# Online Library  📚
 
 A full-featured web application for managing a collection of books. Built with Flask backend and modern HTML/CSS/JavaScript frontend.
 
@@ -46,7 +46,7 @@ cd online_book_project
 pip install -r requirements.txt
 ```
 
-3. **Run the application:**
+3. **Run the web application:**
 ```bash
 python main.py
 ```
@@ -55,6 +55,22 @@ python main.py
 ```
 http://localhost:5000
 ```
+
+### Run as a Desktop App (no browser required)
+
+This project includes a PyQt5-based desktop wrapper that loads the same HTML UI locally.
+
+1. Install desktop dependencies (already included in `requirements.txt`):
+```bash
+pip install -r requirements.txt
+```
+
+2. Run the desktop app:
+```bash
+python app_gui.py
+```
+
+The app opens a window on your device that displays the same interface without running a web server.
 
 ## Usage
 

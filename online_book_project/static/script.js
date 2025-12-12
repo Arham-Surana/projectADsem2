@@ -1,6 +1,7 @@
 // Global state
 let books = [];
 let selectedBookId = null;
+let backend = null; // assigned when running inside the desktop app via QWebChannel
 
 // DOM Elements
 const categoryFilter = document.getElementById('category-filter');
@@ -17,8 +18,19 @@ const confirmOk = document.getElementById('confirm-ok');
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
-    loadBooks();
     setupEventListeners();
+
+    // If running inside the PyQt desktop app, establish the QWebChannel bridge.
+    if (window.qt && window.QWebChannel) {
+        new QWebChannel(qt.webChannelTransport, function(channel) {
+            backend = channel.objects.backend;
+            // load via backend
+            loadBooks();
+        });
+    } else {
+        // normal browser mode
+        loadBooks();
+    }
 });
 
 function setupEventListeners() {
@@ -39,48 +51,67 @@ function setupEventListeners() {
 }
 
 // Load books from server
-async function loadBooks() {
-    try {
-        const category = categoryFilter.value;
-        const url = category === 'All' 
-            ? '/api/books' 
-            : `/api/books?category=${encodeURIComponent(category)}`;
-        
-        const response = await fetch(url);
-        books = await response.json();
-        renderBooks();
-        selectedBookId = null;
-    } catch (error) {
-        console.error('Error loading books:', error);
-        alert('Error loading books');
+function loadBooks() {
+    const category = categoryFilter.value;
+    if (backend) {
+        backend.get_books(category, function(result) {
+            books = result || [];
+            renderBooks();
+            selectedBookId = null;
+        });
+        return;
     }
+
+    // fallback: call server endpoints (browser mode)
+    (async () => {
+        try {
+            const url = category === 'All'
+                ? '/api/books'
+                : `/api/books?category=${encodeURIComponent(category)}`;
+            const response = await fetch(url);
+            books = await response.json();
+            renderBooks();
+            selectedBookId = null;
+        } catch (error) {
+            console.error('Error loading books:', error);
+            alert('Error loading books');
+        }
+    })();
 }
 
 // Search books
-async function searchBooks() {
+function searchBooks() {
     const searchTerm = searchInput.value.trim();
-    
+
     if (!searchTerm) {
         loadBooks();
         return;
     }
 
-    try {
-        const response = await fetch('/api/books/search', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name: searchTerm })
+    if (backend) {
+        backend.search_books(searchTerm, function(result) {
+            books = result || [];
+            renderBooks();
+            selectedBookId = null;
         });
-        
-        books = await response.json();
-        renderBooks();
-        selectedBookId = null;
-    } catch (error) {
-        console.error('Error searching books:', error);
-        alert('Error searching books');
+        return;
     }
+
+    (async () => {
+        try {
+            const response = await fetch('/api/books/search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: searchTerm })
+            });
+            books = await response.json();
+            renderBooks();
+            selectedBookId = null;
+        } catch (error) {
+            console.error('Error searching books:', error);
+            alert('Error searching books');
+        }
+    })();
 }
 
 // Render books in table
@@ -136,7 +167,7 @@ function closeDeleteModal() {
 }
 
 // Handle add book
-async function handleAddBook(e) {
+function handleAddBook(e) {
     e.preventDefault();
 
     const newBook = {
@@ -151,26 +182,38 @@ async function handleAddBook(e) {
         return;
     }
 
-    try {
-        const response = await fetch('/api/books', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newBook)
+    if (backend) {
+        backend.add_book(newBook, function(added) {
+            if (added) {
+                closeAddBookModal();
+                loadBooks();
+                searchInput.value = '';
+            } else {
+                alert('Error adding book');
+            }
         });
+        return;
+    }
 
-        if (response.ok) {
-            closeAddBookModal();
-            loadBooks();
-            searchInput.value = '';
-        } else {
+    (async () => {
+        try {
+            const response = await fetch('/api/books', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newBook)
+            });
+            if (response.ok) {
+                closeAddBookModal();
+                loadBooks();
+                searchInput.value = '';
+            } else {
+                alert('Error adding book');
+            }
+        } catch (error) {
+            console.error('Error adding book:', error);
             alert('Error adding book');
         }
-    } catch (error) {
-        console.error('Error adding book:', error);
-        alert('Error adding book');
-    }
+    })();
 }
 
 // Handle erase
@@ -186,22 +229,29 @@ function handleErase() {
 }
 
 // Delete selected book
-async function deleteSelectedBook(bookId) {
-    try {
-        const response = await fetch(`/api/books/${bookId}`, {
-            method: 'DELETE'
-        });
-
-        if (response.ok) {
+function deleteSelectedBook(bookId) {
+    if (backend) {
+        backend.delete_book(bookId, function(ok) {
             selectedBookId = null;
             loadBooks();
-        } else {
+        });
+        return;
+    }
+
+    (async () => {
+        try {
+            const response = await fetch(`/api/books/${bookId}`, { method: 'DELETE' });
+            if (response.ok) {
+                selectedBookId = null;
+                loadBooks();
+            } else {
+                alert('Error deleting book');
+            }
+        } catch (error) {
+            console.error('Error deleting book:', error);
             alert('Error deleting book');
         }
-    } catch (error) {
-        console.error('Error deleting book:', error);
-        alert('Error deleting book');
-    }
+    })();
 }
 
 // Helper function to escape HTML
