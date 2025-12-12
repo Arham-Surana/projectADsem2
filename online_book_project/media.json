@@ -159,5 +159,12 @@
     "author": "mark",
     "date": 2000,
     "category": "Philosophy"
+  },
+  {
+    "id": 25,
+    "name": "Me",
+    "author": "Atham",
+    "date": 2025,
+    "category": "Philosophy"
   }
 ]
