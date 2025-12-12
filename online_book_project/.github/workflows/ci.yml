@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Upgrade pip
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+
+      - name: Install test dependencies
+        run: |
+          # Install only the packages required to run the tests to avoid heavy GUI builds
+          python -m pip install --upgrade pip
+          python -m pip install Flask pytest
+
+      - name: Run tests
+        run: |
+          python -m pytest -q
+        env:
+          # Ensure tests don't accidentally use a production DB file
+          TEST_DB_PATH: ${{ runner.temp }}/test_media.json

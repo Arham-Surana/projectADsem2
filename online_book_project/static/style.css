@@ -6,7 +6,7 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #1737c5 0%, #44c5c2 100%);
     min-height: 100vh;
     padding: 20px;
 }
@@ -14,15 +14,15 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    background: white;
+    background: rgb(250, 249, 249);
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
 
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #08154e 0%, #4aaec5 100%);
+    color: rgb(11, 0, 0);
     padding: 30px 40px;
     text-align: center;
 }
@@ -78,7 +78,7 @@ header h1 {
 .search-group select:focus,
 .search-group input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #0f1d57;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
@@ -106,7 +106,7 @@ header h1 {
 
 .btn-primary {
     background: #2563eb;
-    color: white;
+    color: rgb(15, 8, 8);
 }
 
 .btn-primary:hover {
@@ -220,7 +220,7 @@ tbody tr.selected {
 }
 
 .modal-content {
-    background: white;
+    background: rgb(10, 10, 10);
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     width: 90%;
@@ -365,3 +365,84 @@ tbody tr.selected {
         width: 95%;
     }
 }
+
+/* Dark theme overrides */
+.dark body, .dark {
+    background: #0b0f1a;
+    color: #e6eef8;
+}
+
+.dark .container {
+    background: #0f1724;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+.dark header {
+    background: linear-gradient(135deg, #0f1724 0%, #111827 100%);
+    color: #fff;
+}
+
+.dark .subtitle {
+    color: #cbd5e1;
+}
+
+.dark .controls-section {
+    background: #071028;
+    border-bottom-color: #0b1220;
+}
+
+.dark .search-group select,
+.dark .search-group input,
+.dark .form-group input,
+.dark .form-group select {
+    background: #071026;
+    border: 1px solid #203047;
+    color: #e6eef8;
+}
+
+.dark .btn-primary {
+    background: #2563eb;
+    color: #fff;
+}
+
+.dark thead {
+    background: #071026;
+    border-bottom-color: #102036;
+}
+
+.dark th {
+    color: #cbd5e1;
+}
+
+.dark td {
+    color: #dbeafe;
+    border-bottom-color: #0b1220;
+}
+
+.dark tbody tr:hover {
+    background-color: #071429;
+}
+
+.dark tbody tr.selected {
+    background-color: #12304d;
+}
+
+.dark .modal {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.dark .modal-content {
+    background: #071222;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.header-right { display: inline-flex; align-items:center; }
+.header-left { display: inline-block; vertical-align: middle; }

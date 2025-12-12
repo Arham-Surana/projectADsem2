@@ -126,20 +126,28 @@ class MainWindow(QtWidgets.QMainWindow):
         # Set channel on the page
         self.view.page().setWebChannel(self.channel)
 
-        # Load the HTML file and inject absolute paths for CSS and JS
+        # Load the HTML file and convert Flask template syntax to absolute paths
         index_path = os.path.join(BASE_DIR, 'templates', 'index.html')
         css_path = os.path.join(BASE_DIR, 'static', 'style.css').replace('\\', '/')
         js_path = os.path.join(BASE_DIR, 'static', 'script.js').replace('\\', '/')
         
-        # Read HTML and replace placeholders
+        # Read HTML and replace Flask template syntax with absolute file paths
         with open(index_path, 'r', encoding='utf-8') as f:
             html_content = f.read()
         
-        html_content = html_content.replace('file:///PLACEHOLDER_CSS_PATH', f'file:///{css_path}')
-        html_content = html_content.replace('file:///PLACEHOLDER_JS_PATH', f'file:///{js_path}')
+        # Replace Flask url_for() syntax with absolute file:// paths
+        html_content = html_content.replace(
+            "{{ url_for('static', filename='style.css') }}", 
+            f'file:///{css_path}'
+        )
+        html_content = html_content.replace(
+            "{{ url_for('static', filename='script.js') }}", 
+            f'file:///{js_path}'
+        )
         
         # Load the modified HTML
         self.view.setHtml(html_content, QUrl.fromLocalFile(index_path))
+
 
 
 

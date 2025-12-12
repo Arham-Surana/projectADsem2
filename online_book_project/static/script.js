@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // normal browser mode
         loadBooks();
     }
+
+    // Apply saved theme preference
+    applySavedTheme();
 });
 
 function setupEventListeners() {
@@ -44,10 +47,37 @@ function setupEventListeners() {
     addBookForm.addEventListener('submit', handleAddBook);
     closeBtn.addEventListener('click', closeAddBookModal);
     confirmOk.addEventListener('click', closeDeleteModal);
+    // Theme toggle (dark/light)
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark');
+            setThemeIcon(themeToggle, isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    }
     document.addEventListener('click', (e) => {
         if (e.target === addBookModal) closeAddBookModal();
         if (e.target === deleteConfirmationModal) closeDeleteModal();
     });
+}
+
+// Theme helpers
+function applySavedTheme() {
+    const saved = localStorage.getItem('theme');
+    const themeToggle = document.getElementById('theme-toggle');
+    // Default to dark mode unless explicitly set to 'light'
+    if (saved === 'light') {
+        document.body.classList.remove('dark');
+        if (themeToggle) setThemeIcon(themeToggle, false);
+    } else {
+        document.body.classList.add('dark');
+        if (themeToggle) setThemeIcon(themeToggle, true);
+    }
+}
+
+function setThemeIcon(btn, isDark) {
+    btn.textContent = isDark ? '☀️' : '🌙';
 }
 
 // Load books from server

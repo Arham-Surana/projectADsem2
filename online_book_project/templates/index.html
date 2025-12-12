@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Library — Arham</title>
-    <link rel="stylesheet" href="file:///PLACEHOLDER_CSS_PATH" id="style-link">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" id="style-link">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>📚 Online Library</h1>
-            <p class="subtitle">Discover and Manage Your Favorite Books
-                by Arham Surana
-            </p>
+            <div class="header-left">
+                <h1>📚 Online Library</h1>
+                <p class="subtitle">Discover and Manage Your Favorite Books
+                    by Arham Surana
+                </p>
+            </div>
+            <div class="header-right">
+                <button id="theme-toggle" class="theme-toggle" title="Toggle theme">🌙</button>
+            </div>
         </header>
 
         <!-- Main Controls Section -->
@@ -110,7 +115,7 @@
     </div>
 
     <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
-    <script src="file:///PLACEHOLDER_JS_PATH" id="script-src"></script>
+    <script src="{{ url_for('static', filename='script.js') }}" id="script-src"></script>
     <script>
         // Replace placeholders with actual file paths once DOM loads
         document.addEventListener('DOMContentLoaded', function() {

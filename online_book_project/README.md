@@ -134,7 +134,22 @@ The application uses a JSON file (`media.json`) for persistent storage. It's aut
 ## Author
 
 Created as part of academic project requirements.
-
+ The tests use a temporary JSON file so they won't overwrite your `media.json`.
 ---
+## CI
+This repository includes a GitHub Actions workflow that runs the test suite on every push and pull request (Ubuntu and Windows). The workflow installs only the minimal packages required to run the tests (Flask and pytest) to avoid building heavy GUI packages in CI. See `.github/workflows/ci.yml`.
 
 **Ready to use!** Run `python main.py` and visit http://localhost:5000
+
+## Tests
+
+There are automated tests using pytest targeting the Flask API.
+
+Run the tests:
+
+```powershell
+pip install -r requirements.txt
+pytest -q
+```
+
+The tests use a temporary JSON file so they won't overwrite your `media.json`.
